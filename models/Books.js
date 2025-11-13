@@ -9,7 +9,10 @@ const bookSchema = new Schema({
         type: String,
         required: true,
     },
-    year: Number,
+    year: {
+        Number,
+        required: true
+    },
     genre: {
         type: String,
         required: true
