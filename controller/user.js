@@ -42,11 +42,11 @@ export const userController = {
             next(error)
         }
 
-        // logic to my user to user name and generate accesstoken
+        // logic to link user by name and generate accesstoken
         const myuser = {name: user.name}
         // access token
         const generateAccesstoken = (myuser) => {
-            return jwt.sign(myuser, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '1m'})
+            return jwt.sign(myuser, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '10m'})
         }
         const accestoken = generateAccesstoken(myuser)
 
@@ -89,7 +89,7 @@ export const userController = {
                 next(error)
             }
             const generateAccesstoken = (myuser) => {
-            return jwt.sign(myuser, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '1m'})
+            return jwt.sign(myuser, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '10m'})
             }
             const accesstoken = generateAccesstoken({name: user.name})
             res.status(200).json({status: "success", accesstoken: accesstoken})
