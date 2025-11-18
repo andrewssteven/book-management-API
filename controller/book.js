@@ -1,5 +1,5 @@
-import Book from "../models/Books.js";
-import { query, validationResult } from "express-validator";
+import { Book } from '../models/Books.js'
+import { validationResult } from "express-validator";
 
 export const bookController = {
   postBook: async (req, res, next) => {

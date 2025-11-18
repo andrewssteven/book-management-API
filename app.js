@@ -5,6 +5,7 @@ import router from "./routes/book.js";
 import { errorHandler, notFound } from "./middleware/errorHandler.js";
 import { logger } from "./middleware/logger.js";
 import { limit } from "./middleware/rateLimit.js";
+import userrouter from "./routes/user.js";
 
 const app = express();
 const allowedOrigins = [
@@ -30,6 +31,7 @@ app.get("/", (req, res) => {
 
 // books routes
 app.use("/api/v1/books", router);
+app.use("/api/v1/users", userrouter)
 
 // error handler middleware
 app.use(notFound);
