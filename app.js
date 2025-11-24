@@ -18,7 +18,7 @@ const allowedOrigins = [
 app.use(limit)
 app.use(express.json());
 app.use(cors({origin: allowedOrigins}));
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(logger)
 
 // db connection

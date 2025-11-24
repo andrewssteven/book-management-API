@@ -43,7 +43,7 @@ export const userController = {
         }
 
         // logic to link user by name and generate accesstoken
-        const myuser = {name: user.name}
+        const myuser = {name: user.name, id: user._id, role: user.role}
         // access token
         const generateAccesstoken = (myuser) => {
             return jwt.sign(myuser, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '10m'})
@@ -52,7 +52,6 @@ export const userController = {
 
         // refresh token
         const refreshToken = jwt.sign(myuser, process.env.REFRESH_TOKEN_SECRET)
-        console.log(refreshToken);
         const newToken = new Token({token: refreshToken})
         newToken.save()
 
