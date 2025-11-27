@@ -9,8 +9,8 @@ export const bookController = {
         return res.status(400).json({ message: validateError.array() });
       let book = new Book(req.body);
       await book.save();
-      let allBooks = await Book.find();
-      res.status(201).json({ status: "success", data: allBooks });
+      let newBook = await Book.findOne();
+      res.status(201).json({ status: "success", data: newBook });
     } catch (error) {
       next(error);
     }

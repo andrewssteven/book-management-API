@@ -1,15 +1,18 @@
 import { Router } from "express";
 import { userController } from "../controller/user.js";
+import { authorizedRole } from "../middleware/roleAuth.js";
+import { authenticate } from "../middleware/Auth.js";
 
-const userrouter = Router()
+const userRouter = Router()
 
-// endpoint: signUp, create new user
-userrouter.post('/', userController.register)
-userrouter.post('/login', userController.Login)
-userrouter.post('/token', userController.refresToken)
-userrouter.get('/', userController.getUsers)
+// Endpoint: retrieve all available users
+userRouter.get('/', authenticate, authorizedRole("admin"), userController.getUsers)
+// Endpoint: retrieve user by Id
+userRouter.get('/:id', authenticate, authorizedRole("user", "admin"), userController.getUserId)
+// Endpoint: update user information
+userRouter.put('/:id', authenticate, authorizedRole("user", "admin"), userController.updateUser)
+// Endpoint: delete user information
+userRouter.delete('/:id', authenticate, authorizedRole("user", "admin"), userController.deleteUser)
 
 
-
-
-export default userrouter
+export default userRouter
